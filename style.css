@@ -22,3 +22,8 @@ div {
   flex-direction: column;
   justify-content: space-evenly;
 }
+/* 
+.div1-content {
+  transition-duration: 2s;
+  translate: 50%, 50%;
+} */

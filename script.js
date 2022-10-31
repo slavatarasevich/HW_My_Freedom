@@ -12,11 +12,22 @@ div3.addEventListener("click", collapse());
 
 function collapse() {
   let isClosed = true;
+  let cellSlidingDown = [
+    // { backgroundColor: "white", offset: 0.1 },
+    // { backgroundColor: "gray", offset: 0.5 },
+    // { backgroundColor: "blue", offset: 1 },
+    { transform: "translate(0%)", offset: 0.1 },
+    { transform: "translate(0%, 50%)", offset: 0.5 },
+  ];
 
+  let cellTiming = {
+    duration: 1000,
+    iterations: 1,
+  };
   return function () {
     if (isClosed === true) {
-      divContent.style.transition = "2sec";
       divContent.style.display = "flex";
+      divContent.animate(cellSlidingDown, cellTiming);
       isClosed = false;
       console.log("set to false");
     } else if (isClosed === false) {
