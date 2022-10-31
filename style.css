@@ -1,0 +1,24 @@
+.div1-content {
+  display: none;
+}
+
+.div2-content {
+  display: none;
+}
+
+.div3-content {
+  display: none;
+}
+
+div {
+  border: 1px solid black;
+  height: 100px;
+}
+.wrapper {
+  border: 1px solid black;
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
