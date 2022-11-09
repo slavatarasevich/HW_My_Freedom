@@ -15,37 +15,19 @@ const babelOptions = (preset) => {
   return opts;
 };
 
-const jsLoaders = () => {
-  const loaders = [
-    {
-      loader: "babel-loader",
-      options: babelOptions(),
-    },
-  ];
-
-  if (isDev) {
-    loaders.push("eslint-loader");
-  }
-
-  return loaders;
-};
-
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
   entry: {
     main: ["@babel/polyfill", "./index.js"],
-    analytics: "./analytics.js",
+    analytics: "./analytics.ts",
   },
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
-    extensions: [".js", ".json", ".png", ".ttf"],
-    alias: {
-      "@": path.resolve(__dirname, "src"),
-    },
+    extensions: [".js", ".jsx"],
   },
   optimization: {
     splitChunks: {
@@ -76,14 +58,28 @@ module.exports = {
         test: /\.(ttf|woff|woff2)$/,
         use: ["file-loader"],
       },
-      // {
-      //   test: /\.jsx$/,
-      //   exclude: /node_modules/,
-      //   loader: {
-      //     loader: "babel-loader",
-      //     options: babelOptions("@babel/preset-react"),
-      //   },
-      // },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-proposal-class-properties"],
+          },
+        },
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-typescript"],
+            plugins: ["@babel/plugin-proposal-class-properties"],
+          },
+        },
+      },
     ],
   },
 };
