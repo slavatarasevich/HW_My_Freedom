@@ -4,3 +4,7 @@
 *.ts
 *.ts
 src/analytics.ts
+.vscode
+/node_modules
+/.pnp
+.pnp.js
